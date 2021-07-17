@@ -11,8 +11,9 @@ for(i=0; i<16; i=i+1) begin: pr
 	end
 end
 endgenerate
+	
 //Reduction Stage 1: Dj = 13
-HA h0 (hs[0], hc[0], p[13], p[28]);				
+HA h0 (hs[0], hc[0], p[13], p[28]);	
 FA f0 (fs[0], fc[0], hc[0], p[14], p[29]);
 HA h1 (hs[1], hc[1], p[44], p[59]);
 FA f1 (fs[1], fc[1], hc[1], fc[0], p[15]);
@@ -24,8 +25,9 @@ HA h3 (hs[3], hc[3], p[76], p[91]);
 FA f5 (fs[5], fc[5], hc[3], fc[4], fc[3]);
 FA f6 (fs[6], fc[6], p[47], p[62], p[77]);
 FA f7 (fs[7], fc[7], fc[6], fc[5], p[63]);
+	
 //Reduction Stage 2: Dj = 9
-HA h4 (hs[4], hc[4], p[9], p[24]);				
+HA h4 (hs[4], hc[4], p[9], p[24]);
 FA f8 (fs[8], fc[8], hc[4], p[10], p[25]);
 HA h5 (hs[5], hc[5], p[40], p[55]);
 FA f9 (fs[9], fc[9], hc[5], fc[8], p[11]);
@@ -69,6 +71,7 @@ FA f44 (fs[44], fc[44], p[125], p[140], p[155]);
 FA f45 (fs[45], fc[45], fc[44], fc[43], fc[42]);
 FA f46 (fs[46], fc[46], p[111], p[126], p[141]);
 FA f47 (fs[47], fc[47], fc[46], fc[45], p[127]);
+	
 //Reduction Stage 3: Dj = 6
 HA h8 (hs[8], hc[8], p[6], p[21]);
 FA f48 (fs[48], fc[48], hc[8], p[7], p[22]);
@@ -124,6 +127,7 @@ FA f95 (fs[95], fc[95], p[173], p[188], p[203]);
 FA f96 (fs[96], fc[96], fc[95], fc[94], fc[93]);
 FA f97 (fs[97], fc[97], p[159], p[174], p[189]);
 FA f98 (fs[98], fc[98], fc[97], fc[96], fc[175]);
+	
 //Reduction Stage 4: Dj = 4
 HA h11 (hs[11], hc[11], p[4], p[19]);
 FA f99 (fs[99], fc[99], hc[11], p[5], p[20]);
@@ -171,6 +175,7 @@ FA f139 (fs[139], fc[139], p[190], p[205], p[220]);
 FA f140 (fs[140], fc[140], fc[139], fc[138], fc[98]);
 FA f141 (fs[141], fc[141], p[191], p[206], p[221]);
 FA f142 (fs[142], fc[142], fc[141], fc[140], p[207]);
+	
 //Reduction Stage 5: Dj = 3
 HA h13 (hs[13], hc[13], p[3], p[18]);
 FA f143 (fs[143], fc[143], hc[13], hs[11], p[34]);
@@ -198,6 +203,7 @@ FA f164 (fs[164], fc[164], fc[163], fs[139], fs[138]);
 FA f165 (fs[165], fc[165], fc[164], fs[141], fs[140]);
 FA f166 (fs[166], fc[166], fc[165], fs[142], p[222]);
 FA f167 (fs[167], fc[167], fc[166], fc[142], p[223]);
+	
 //Reduction Stage 6: Dj = 2
 HA h14 (hs[14], hc[14], p[2], p[17]);
 FA f168 (fs[168], fc[168], hc[14], hs[13], p[33]);
@@ -227,6 +233,7 @@ FA f191 (fs[191], fc[191], fc[190], fs[165], p[236]);
 FA f192 (fs[192], fc[192], fc[191], fs[166], p[237]);
 FA f193 (fs[193], fc[193], fc[192], fs[167], p[238]);
 FA f194 (fs[194], fc[194], fc[193], fs[167], p[239]);
+	
 //Output Vector Generation
 buf r0  (y[0], p[0]);
 FA  r1  (y[1], c[1], p[1], p[16], 1'b0);
@@ -261,11 +268,13 @@ FA  r29 (y[29], c[29], fs[194], p[254], c[28]);
 FA  r30 (y[30], c[30], fc[194], p[255], c[29]);
 buf r31 (y[31], c[30]);
 endmodule
+
 //Full Adder Module
 module FA (output s, co, input a, b, ci);
 assign s=a^b^ci;
 assign co=(a&b)|(b&ci)|(ci&a);
 endmodule 
+
 //Half Adder Module
 module HA (output s, c, input a, b);
 assign s=a^b;
